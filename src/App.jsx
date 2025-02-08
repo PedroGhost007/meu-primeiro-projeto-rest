@@ -65,14 +65,36 @@ function App() {
   }
 
   return (
-    <div className="bg-gray-300 justify-center flex w-screen h-screen p-6">
-      <div className="w-[500px] space-y-4">
-        <FormPromotor onCLickAddPromotor={onCLickAddPromotor} />
-        <Promotor
-          promotor={promotor}
-          onCLickSetCompleted={onCLickSetCompleted}
-          onCLickDeletePromotor={onCLickDeletePromotor}
-        />
+    <div className="bg-gray-300 flex h-screen">
+      {/* Sidebar flexível */}
+      <div className="w-60 bg-gray-800 text-white h-full p-6 hidden md:block">
+        <h2 className="text-xl font-bold mb-4">Navegação</h2>
+        <nav className="space-y-2">
+          <a href="#home" className="block p-2 rounded hover:bg-gray-700">
+            🏠 Início
+          </a>
+          <a href="#sobre" className="block p-2 rounded hover:bg-gray-700">
+            📌 Sobre
+          </a>
+          <a href="#servicos" className="block p-2 rounded hover:bg-gray-700">
+            💼 Serviços
+          </a>
+          <a href="#contato" className="block p-2 rounded hover:bg-gray-700">
+            📞 Contato
+          </a>
+        </nav>
+      </div>
+
+      {/* Conteúdo principal centralizado */}
+      <div className="flex flex-1  justify-center p-6">
+        <div className="w-[500px] space-y-4">
+          <FormPromotor onCLickAddPromotor={onCLickAddPromotor} />
+          <Promotor
+            promotor={promotor}
+            onCLickSetCompleted={onCLickSetCompleted}
+            onCLickDeletePromotor={onCLickDeletePromotor}
+          />
+        </div>
       </div>
     </div>
   );
