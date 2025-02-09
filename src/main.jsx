@@ -4,10 +4,12 @@ import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import PromotorPage from "./pages/promotorPage.jsx";
+import LoginForm from "./components/loginForm.jsx";
+import ParquePage from "./pages/parquePage.jsx";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/home",
     element: <App />,
   },
   {
@@ -15,8 +17,12 @@ const router = createBrowserRouter([
     element: <PromotorPage />,
   },
   {
-    path: "/login",
-    element: <PromotorPage />,
+    path: "/",
+    element: <LoginForm />,
+  },
+  {
+    path: "/parque",
+    element: <ParquePage />,
   },
 ]);
 

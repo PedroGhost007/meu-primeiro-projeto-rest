@@ -2,6 +2,7 @@ import { useState } from "react";
 import FormPromotor from "./components/formPromotor";
 import Promotor from "./components/promotor";
 import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const [promotor, setPromotor] = useState([
@@ -24,6 +25,8 @@ function App() {
       isCompleted: false,
     },
   ]);
+
+  const navigate = useNavigate();
 
   function onCLickSetCompleted(IDpromotor) {
     const promotorSelecionado = promotor.map((promotor) => {
@@ -71,17 +74,14 @@ function App() {
         <h2 className="text-xl font-bold mb-4">Navegação</h2>
         <nav className="space-y-2">
           <a href="#home" className="block p-2 rounded hover:bg-gray-700">
-            🏠 Início
+            Início
           </a>
-          <a href="#sobre" className="block p-2 rounded hover:bg-gray-700">
-            📌 Sobre
-          </a>
-          <a href="#servicos" className="block p-2 rounded hover:bg-gray-700">
-            💼 Serviços
-          </a>
-          <a href="#contato" className="block p-2 rounded hover:bg-gray-700">
-            📞 Contato
-          </a>
+          <button
+            onClick={() => navigate("/parque")}
+            className="block p-2 rounded hover:bg-gray-700"
+          >
+            Cadastrar Parques
+          </button>
         </nav>
       </div>
 
