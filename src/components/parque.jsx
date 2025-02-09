@@ -18,7 +18,10 @@ function Parque(props) {
           >
             <PencilIcon />
           </button>
-          <button className="bg-gray-300 p-2 rounded-md text-gray-700">
+          <button
+            onClick={() => props.onClickDelete(item.id)}
+            className="bg-gray-300 p-2 rounded-md text-gray-700"
+          >
             <TrashIcon />
           </button>
         </li>

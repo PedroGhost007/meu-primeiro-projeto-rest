@@ -1,4 +1,4 @@
-import { CheckIcon, ChevronRightIcon, TrashIcon } from "lucide-react";
+import { CheckIcon, PencilIcon, TrashIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 function Promotor(props) {
@@ -20,7 +20,7 @@ function Promotor(props) {
             onClick={() => navigate("/promotor")}
             className="bg-gray-300 p-2 rounded-md text-gray-700"
           >
-            <ChevronRightIcon />
+            <PencilIcon />
           </button>
           <button
             onClick={() => props.onCLickDeletePromotor(item.id)}

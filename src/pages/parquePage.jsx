@@ -72,6 +72,12 @@ function ParquePage() {
     setParque(newParque);
   }
 
+  function onClickDelete(IDparque) {
+    setParque((parqueSelecionado) =>
+      parqueSelecionado.filter((parque) => parque.id !== IDparque)
+    );
+  }
+
   return (
     <div className="bg-gray-300 flex h-screen">
       {/* Sidebar flexível */}
@@ -97,7 +103,11 @@ function ParquePage() {
       <div className="flex flex-1  justify-center p-6">
         <div className="w-[500px] space-y-4">
           <FormParque onCLickAddParque={onCLickAddParque} />
-          <Parque parque={parque} onClickEdit={onClickEdit} />
+          <Parque
+            parque={parque}
+            onClickEdit={onClickEdit}
+            onClickDelete={onClickDelete}
+          />
           {parque.map(
             (item) =>
               item.isEditing && (
