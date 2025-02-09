@@ -1,6 +1,8 @@
 import { CheckIcon, ChevronRightIcon, TrashIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 function Promotor(props) {
+  const navigate = useNavigate();
   return (
     <ul className="bg-slate-50 rounded-md p-6 shadow space-y-4">
       {props.promotor.map((item) => (
@@ -14,7 +16,10 @@ function Promotor(props) {
             {item.isCompleted && <CheckIcon />}
             {item.nome}
           </button>
-          <button className="bg-gray-300 p-2 rounded-md text-gray-700">
+          <button
+            onClick={() => navigate("/promotor")}
+            className="bg-gray-300 p-2 rounded-md text-gray-700"
+          >
             <ChevronRightIcon />
           </button>
           <button
