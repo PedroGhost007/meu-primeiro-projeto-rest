@@ -29,8 +29,8 @@ function PromotorPage() {
     },
   ]);
 
-  const [nomeEditar, setNomeEditar] = useState("");
-  const [emailEditar, setEmailEditar] = useState("");
+  const [nomeEditado, setNomeEditado] = useState("");
+  const [emailEditado, setEmailEditado] = useState("");
   const navigate = useNavigate();
 
   function onCLickSetCompleted(IDpromotor) {
@@ -74,18 +74,26 @@ function PromotorPage() {
   }
 
   function onClickEditPromotor(IDpromotor) {
-    const promotorSelecionado = promotorSelecionado.find(
-      (item) => item.id === IDpromotor
-    );
+    const promotorSelecionado = promotor.find((item) => item.id === IDpromotor);
     if (promotorSelecionado) {
-      setNomeEditar(promotorSelecionado.nome);
-      setEmailEditar(promotorSelecionado.email);
+      setNomeEditado(promotorSelecionado.nome);
+      setEmailEditado(promotorSelecionado.email);
     }
 
     setPromotor((promotoresAtuais) =>
       promotoresAtuais.map((promotor) =>
         promotor.id === IDpromotor
           ? { ...promotor, isEditing: !promotor.isEditing }
+          : promotor
+      )
+    );
+  }
+
+  function onClickSavePromotor(IDpromotor, nome, email) {
+    setPromotor((promotorEditado) =>
+      promotorEditado.map((promotor) =>
+        promotor.id === IDpromotor
+          ? { ...promotor, nome: nome, email: email, isEditing: false }
           : promotor
       )
     );
@@ -117,7 +125,57 @@ function PromotorPage() {
             promotor={promotor}
             onCLickSetCompleted={onCLickSetCompleted}
             onCLickDeletePromotor={onCLickDeletePromotor}
+            onClickEditPromotor={onClickEditPromotor}
           />
+          {promotor.map(
+            (item) =>
+              item.isEditing && (
+                <div
+                  key={item.id}
+                  className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+                >
+                  <div className="bg-white p-6 rounded shadow-lg w-96 space-y-4">
+                    <h2 className=" text-gray-700 font-bold text-center">
+                      Editar valor
+                    </h2>
+                    <input
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      type="text"
+                      value={nomeEditado}
+                      onChange={(event) => setNomeEditado(event.target.value)}
+                      placeholder="Digite seu nome"
+                    />
+                    <input
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      type="text"
+                      value={emailEditado}
+                      onChange={(event) => setEmailEditado(event.target.value)}
+                      placeholder="Digite seu nome"
+                    />
+                    <div className="flex gap-2">
+                      <button
+                        className="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+                        onClick={() =>
+                          onClickSavePromotor(
+                            item.id,
+                            nomeEditado,
+                            emailEditado
+                          )
+                        }
+                      >
+                        Salvar
+                      </button>
+                      <button
+                        className="bg-gray-400 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onClick={() => onClickEditPromotor(item.id)}
+                      >
+                        Fechar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )
+          )}
         </div>
       </div>
     </div>

@@ -17,7 +17,7 @@ function Promotor(props) {
             {item.nome}
           </button>
           <button
-            onClick={() => navigate("/promotor")}
+            onClick={() => props.onClickEditPromotor(item.id)}
             className="bg-gray-300 p-2 rounded-md text-gray-700"
           >
             <PencilIcon />
